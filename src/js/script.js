@@ -60,7 +60,7 @@
       thisProduct.data = data;//j.w.
 
       thisProduct.renderInMenu();//uruchomienie funkcji tuż po utworzeniu instancji
-      
+      thisProduct.initAccordion();
       console.log('new Product:', thisProduct);
     }
 
@@ -76,6 +76,30 @@
         const menuContainer = document.querySelector(select.containerOf.menu);
         /* add element to menu */
         menuContainer.appendChild(thisProduct.element);
+
+      }
+
+      initAccordion (){
+        const thisProduct = this;
+        /* find the clickable trigger (the element that should react to clicking) */
+        const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+        
+        /* START: add event listener to clickable trigger on event click */
+        clickableTrigger.addEventListener('click', function(event) {
+        /* prevent default action for event */
+        event.preventDefault();
+        /* find active product (product that has active class) */
+        const findActive = document.querySelector(select.all.menuProductsActive);//'.active').innerHTML; //czy tak też mogę? zastosować 'active' i .innetHTML?
+        /* if there is active product and it's not thisProduct.element, remove class active from it */
+        const active = findActive.classList.contains(classNames.menuProduct.wrapperActive);
+        console.log(active);
+        if (active && active !== thisProduct.element){
+          active.classList.remove('active');
+        }
+        /* toggle active class on thisProduct.element */
+        thisProduct.element.classList.toggle('active');
+        return (event);
+        });
 
       }
   }
