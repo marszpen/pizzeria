@@ -53,24 +53,48 @@
   };
 
   class Product {
-    constructor () {
+    constructor (id, data) {//2. nazwanie argumentów. które otrzymuje konstruktor
       const thisProduct = this;
 
+      thisProduct.id = id;// zapisanie wartości argumentów do właściwości funkcji
+      thisProduct.data = data;//j.w.
+
+      thisProduct.renderInMenu();//uruchomienie funkcji tuż po utworzeniu instancji
+      
       console.log('new Product:', thisProduct);
     }
+
+      renderInMenu() {
+        const thisProduct = this;//renderowanie produktów na stronie
+
+        /* generate HTML based on template */
+        const generatedHTML = templates.menuProduct(thisProduct.data);
+        console.log(this);
+        /* create element using utils.createElementFromHTML -tworzenie lementu DOM*/ 
+        thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+        /* find menu container */
+        const menuContainer = document.querySelector(select.containerOf.menu);
+        /* add element to menu */
+        menuContainer.appendChild(thisProduct.element);
+
+      }
   }
 
   const app = {
     initMenu: function(){
-      const testProduct = new Product();
-      console.log('testProduct:', testProduct);
-    },
+      const thisApp = this; 
+      console.log('thisApp.data:', thisApp.data);
 
-    initData: finction(){
-      const thisApp = this;
-
-      thistApp.data = dataSource;
+      for(let productData in thisApp.data.products){ //1. przekazanie argumentów konstruktorowi
+        new Product (productData, thisApp.data.products[productData]);
     }
+  },
+
+  initData: function(){
+    const thisApp = this;
+
+    thisApp.data = dataSource;
+  },
 
     init: function(){
       const thisApp = this;
@@ -80,10 +104,12 @@
       console.log('settings:', settings);
       console.log('templates:', templates);
     
-      
-      thisApp.initMenu();
-    },
-  };
 
-  app.init();
+      thisApp.initData();
+      thisApp.initMenu();
+    }
+  }
+  app.init()
 }
+
+
