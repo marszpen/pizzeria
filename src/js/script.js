@@ -89,17 +89,26 @@
         /* prevent default action for event */
         event.preventDefault();
         /* find active product (product that has active class) */
-        const findActive = document.querySelector(select.all.menuProductsActive);//'.active').innerHTML; //czy tak też mogę? zastosować 'active' i .innetHTML?
+        const activeProduct = document.querySelector(select.all.menuProductsActive);//'.active').innerHTML; //czy tak też mogę? zastosować 'active' i .innetHTML?
         /* if there is active product and it's not thisProduct.element, remove class active from it */
-        const active = findActive.classList.contains(classNames.menuProduct.wrapperActive);
-        console.log(active);
-        if (active && active !== thisProduct.element){
-          active.classList.remove('active');
+        if (activeProduct != thisProduct.element && activeProduct !== null) {
+          activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
         }
+       
+       
+        /*const activeProduct = activeProduct.classList.contains(classNames.menuProduct.wrapperActive);
+        console.log(active);
+        if (activeProduct && activeProduct !== thisProduct.element){
+          activeProduct.classList.remove('active');
+        }*/
+
+
         /* toggle active class on thisProduct.element */
-        thisProduct.element.classList.toggle('active');
-        return (event);
-        });
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+        /*thisProduct.element.classList.toggle('active');
+        return (event);*/
+        }
+        );
 
       }
   }
