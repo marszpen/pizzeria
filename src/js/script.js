@@ -3,6 +3,7 @@
 {
   'use strict';
 
+
   const select = {
     templateOf: {
       menuProduct: '#template-menu-product',
@@ -66,7 +67,7 @@
       thisProduct.processOrder();
       console.log('new Product:', thisProduct);
     }
-
+      
       renderInMenu() {
         const thisProduct = this;//renderowanie produktów na stronie
 
@@ -90,7 +91,8 @@
         thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
         thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
         thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      }
+        thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+        }
 
       initAccordion (){
         const thisProduct = this;
@@ -148,9 +150,58 @@
       processOrder(){
         const thisProduct = this;
         console.log('processOrder');
-      }
 
-  }
+        // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
+        const formData = utils.serializeFormToObject(thisProduct.form);
+        console.log('formData', formData);
+
+        // set price to default price
+        let price = thisProduct.data.price;
+
+        // for every category (param)...
+        for(let paramId in thisProduct.data.params) {
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        const param = thisProduct.data.params[paramId];
+        console.log(paramId, param);
+
+        // for every option in this category
+        for(let optionId in param.options) {
+        // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          const option = param.options[optionId];
+          console.log(optionId, option);
+        //check if formData and paramId has optionId
+            if(formData[paramId] && formData[paramId].includes(optionId)) {  //const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+        // check if the option is not default
+              if(!optionId.default) {
+        // add option price to price variable
+              price += option.price
+        // check if formData is default
+              } else {
+                if(optionId.defalut) {
+        // reduce price variable 
+                  price -= option.price
+                }     
+        // find image class .paramId-optionId in HTML
+        const optionImage = thisProduct.imageVisible.querySelector('.' + paramId + '-' + optionId);
+        const optionSelected = formData[paramId] && formData[paramId].includes(optionId);  // bez tego wiersza, tylko optionSelected ?
+          if(optionImage) {
+            if(optionSelected) {
+                optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+                optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
+      }
+          }
+         
+      }
+        }
+      }
+        // update calculated price in the HTML
+        thisProduct.priceElem.innerHTML = price;
+      }
+    }
+
+  
 
   const app = {
     initMenu: function(){
