@@ -223,6 +223,7 @@
       console.log('constructor arguments:', element);
       
       thisWidget.getElements(element);
+      thisWidget.setValue();
     }
 
       getElements(element){
