@@ -178,7 +178,7 @@
       thisProduct.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
-          
+        thisProduct.addToCart();
       });
     }
       
@@ -248,6 +248,11 @@
       });
     }
     
+    addToCart() {
+      const thisProduct = this;
+
+      app.cart.add(thisProduct);
+    }
   }
 
   class AmountWidget {
@@ -261,6 +266,7 @@
       
       thisWidget.setValue(settings.amountWidget.defaultValue);
       thisWidget.initActions();
+
     }
 
     getElements(element){
@@ -279,13 +285,14 @@
       /* TODO: Add validation */
       if (thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
         thisWidget.value = newValue;
+        thisWidget.input.value = thisWidget.value;
+        thisWidget.announce();
       }
-    }
-    
+  }
     announce(){
       const thisWidget = this;
 
-      const evebt = new Event ('updated');
+      const event = new Event ('updated');
       thisWidget.element.dispatchEvent(event);
     }
 
@@ -326,16 +333,23 @@
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     }
 
+   
     initActions() {
-    const thisCart = this;
-    
-    thisCart.dom.toggleTrigger.addEventListener('click', function(){
-    thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
-    });
-
+      const thisCart = this;
+      
+      thisCart.dom.toggleTrigger.addEventListener('click', function(){
+      thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      }); 
+    }
   
+  
+    add(menuProduct){
+      //const thisCart = this;
+
+      console.log('adding product', menuProduct);
+    }
   }
-  }
+
   const app = {
     initMenu: function(){
       const thisApp = this; 
@@ -372,7 +386,7 @@
       thisApp.initCart();
     }
 
-    
+  
   };
   app.init();
 }
