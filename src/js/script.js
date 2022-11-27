@@ -298,7 +298,7 @@
         
         }
       }
-          return params;
+      return params;
     }
   }
 
@@ -350,11 +350,11 @@
       });
       thisWidget.linkDecrease.addEventListener('click',function(event){
         event.preventDefault();
-        thisWidget.setValue(--thisWidget.value);
+        thisWidget.setValue(thisWidget.value - 1);
       });
       thisWidget.linkIncrease.addEventListener('click',function (event) {
         event.preventDefault();
-        thisWidget.setValue(++thisWidget.value);
+        thisWidget.setValue(thisWidget.value +1);
       });
     }
   }
