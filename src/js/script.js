@@ -283,7 +283,7 @@
         params[paramId] = {
           label: param.label,
           options: {}
-        };
+        }
         // for every option in this category
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
@@ -295,7 +295,6 @@
             params[paramId].options[optionId] = option.label;
             console.log(option.label);
           }
-        
         }
       }
       return params;
@@ -399,12 +398,12 @@
       const generatedHTML = templates.cartProduct(menuProduct);
       //console.log(this);
       /* create element using utils.createElementFromHTML -tworzenie lementu DOM*/ 
-      const generateDOM = utils.createDOMFromHTML(generatedHTML);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
       /* add element to menu */
-      thisCart.dom.productList.appendChild(generateDOM);
+      thisCart.dom.productList.appendChild(generatedDOM);
 
-      thisCart.products.push(menuProduct);
-      console.log('thisCart.products', thisCart.products);
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM)); //tworzenie nowej instancji klasy new CartProduct i dodanie do tablicy thisCart.products
+        console.log('thisCart.products', thisCart.products);
     }
     
   }
@@ -419,6 +418,7 @@
       thisCartProduct.priceSingle = menuProduct.priceSingle,
       thisCartProduct.price = menuProduct.amountWidget.value * thisProduct.priceSingle,
       thisCartProduct.params = menuProduct.prepareCartProductParams();
+      thisCartProduct.initAmountWidget(element);
     }
 
     getElements (element){
@@ -435,6 +435,14 @@
 
     }
 
+    initAmountWidget(element){
+      const thisCartProduct = this;
+      thisCartProduct.amountWidget = new AmountWidget (thisCartProduct.amountWidgetElem);
+      thisCartProduct.amountWidgetElem.addEventListener('updated', function() {
+      
+      });
+    }
+    }
   }
   const app = {
     initMenu: function(){
