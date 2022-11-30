@@ -338,7 +338,9 @@
     announce(){
       const thisWidget = this;
 
-      const event = new Event ('updated');
+      const event = new Event ('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
 
@@ -391,6 +393,10 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       }); 
+
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update();
+      })
     }
   
     add(menuProduct){
@@ -408,7 +414,10 @@
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM)); //tworzenie nowej instancji klasy new CartProduct i dodanie do tablicy thisCart.products
       console.log('thisCart.products', thisCart.products);
+
+      thisCart.update();
     }
+
     
     update() {
       const thisCart = this;
@@ -428,10 +437,13 @@
           thisCart.dom.deliveryFee.innerHTML = 0;
           }
           thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
-          thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
-          }
+          thisCart.dom.subtotalPrice.innerHTML = thisCart.totalNumber;
+        
+          for (let price of thisCart.dom.totalPrice) {
+            price.innerHTML = thisCart.totalPrice;
         }
-      
+      }
+  }
 
   class CartProduct {
     constructor(menuProduct, element) {
