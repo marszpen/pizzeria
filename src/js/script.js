@@ -449,8 +449,6 @@
 
     remove(){
       const thisCart = this;
-
-      const thisCart = this;
         event.dom.wrapper.remove();
           const productsRemove = thisCart.products.indexOf(event);
           thisCart.products.splice(productsRemove, 1);
