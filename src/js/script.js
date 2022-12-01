@@ -400,7 +400,7 @@
 
       thisCart.dom.productList.addEventListener('remove', function(event){
         thisCart.remove(event.detail.cartProduct);
-      })
+      });
     }
   
     add(menuProduct){
@@ -424,28 +424,28 @@
 
     update(){
       const thisCart = this;
-        const deliveryFee = settings.cart.defaultDeliveryFee;
-        thisCart.totalNumber = 0; //całościowa liczba sztuk produktu
-        thisCart.subtotalPrice = 0; //zsumowana cena za wszystko - bez kosztu dostawy
+      const deliveryFee = settings.cart.defaultDeliveryFee;
+      thisCart.totalNumber = 0; //całościowa liczba sztuk produktu
+      thisCart.subtotalPrice = 0; //zsumowana cena za wszystko - bez kosztu dostawy
 
-        for (let product of thisCart.products) {
-          thisCart.totalNumber += product.amount;
-          thisCart.subtotalPrice += product.price;
-          }
-        if (thisCart.totalNumber != 0) {
-          thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
-          thisCart.dom.deliveryFee.innerHTML = deliveryFee;
-          } else {
-          thisCart.totalPrice = 0;
-          thisCart.dom.deliveryFee.innerHTML = 0;
-          }
-          thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
-          thisCart.dom.subtotalPrice.innerHTML = thisCart.totalNumber;
-        
-          for (let price of thisCart.dom.totalPrice) {
-            price.innerHTML = thisCart.totalPrice;
-        }
+      for (let product of thisCart.products) {
+        thisCart.totalNumber += product.amount;
+        thisCart.subtotalPrice += product.price;
       }
+      if (thisCart.totalNumber != 0) {
+        thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
+        thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      } else {
+        thisCart.totalPrice = 0;
+        thisCart.dom.deliveryFee.innerHTML = 0;
+      }
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
+      thisCart.dom.subtotalPrice.innerHTML = thisCart.totalNumber;
+        
+      for (let price of thisCart.dom.totalPrice) {
+        price.innerHTML = thisCart.totalPrice;
+      }
+    }
 
     remove(cartProduct) {
       const thisCart = this;
