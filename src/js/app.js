@@ -1,8 +1,8 @@
 import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
-import { agents } from 'caniuse-lite';
-import { id } from 'prelude-ls';
+import Booking from './components/Booking.js';
+
 
 const app = {
   initPages: function(){
@@ -103,6 +103,13 @@ const app = {
     thisApp.productList.addEventListener('add-to-cart', function(event){
       app.cart.add(event.detail.product);
     })
+  },
+
+  initBooking: function (){
+    const thisAp = this;
+    const bookingElem = document.querySelector(select.containerOf.bookig);
+    thisApp.booking = new Booking (bookingElem);
+
   },
 
   init: function(){
