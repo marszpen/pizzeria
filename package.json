@@ -162,6 +162,7 @@
     "finalhandler": "^1.1.0",
     "find-up": "^4.1.0",
     "flat-cache": "^2.0.1",
+    "flatpickr": "^4.6.13",
     "flatted": "^2.0.2",
     "follow-redirects": "^1.15.1",
     "fraction.js": "^4.2.0",
