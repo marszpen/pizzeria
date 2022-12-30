@@ -34,7 +34,7 @@ const app = {
         /*run thisApp.activatePage wih that id */
         thisApp.activatePage(id);
 
-      /*change ORL hash */
+      /*change URL hash */
       window.location.hash = '#/' + id;
       });
     }
