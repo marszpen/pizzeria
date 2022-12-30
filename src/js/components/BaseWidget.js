@@ -1,9 +1,9 @@
 class BaseWidget{
-    constructor(wrappetElement, initialValue){
+    constructor(wrapperElement, initialValue){
     const thisWidget = this;
 
     thisWidget.dom = {};
-    thisWidget.dom.wrapper = wrappetElement;
+    thisWidget.dom.wrapper = wrapperElement;
 
     thisWidget.correctValue = initValue;
     }
