@@ -1,5 +1,5 @@
 import {select, classNames, templates} from '../settings.js';
-import utils from './usils.js';
+import utils from '../usils.js';
 import AmountWidget from './components/AmountWidget.js';
 
 class Product { //jak dodać debugger?

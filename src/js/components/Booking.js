@@ -1,8 +1,8 @@
-import {select, templates, settings, classNames} from './settings.js';
-import utils from './utils.js';
-import AmountWidget from './AmountWidget.js';
-import DatePicker from './DatePicker.js';
-import HourPicker from './HourPicker.js';
+import {select, templates, settings, classNames} from '../settings.js';
+import utils from '../utils.js';
+import AmountWidget from '../components/AmountWidget.js';
+import DatePicker from '../components/DatePicker.js';
+import HourPicker from '../components/HourPicker.js';
 import { forEachTrailingCommentRange } from 'typescript';
 import { className } from 'postcss-selector-parser';
 
