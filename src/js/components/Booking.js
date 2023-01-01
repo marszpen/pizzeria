@@ -10,6 +10,7 @@ import { className } from 'postcss-selector-parser';
 class Booking {
     constructor(element){
         const thisBooking = this;
+        thisBooking.chooseTable = [];
 
         thisBooking.render(element);
         thisBooking.initWidgets();
@@ -71,6 +72,7 @@ class Booking {
           thisBooking.parseData(bookings,eventsCurrent,eventsRepeat);
         });
     }
+
     parseData(bookings,eventsCurrent,eventsRepeat){
       const thisBooking = this;
 
@@ -97,7 +99,8 @@ class Booking {
         //console.log('thisBooking.booked',thisBooking.booked)
       
         thisBooking.updateDOM();
-      }
+    }
+
     makeBooked(date, hour, duration, table){
       const thisBooking = this;
 
@@ -150,7 +153,7 @@ class Booking {
               table.classList.remove(classNames.booking.tableBooked);
             }
           }
-        }
+    }
     
     render(element){
         const thisBooking = this;

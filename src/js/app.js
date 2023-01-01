@@ -61,7 +61,6 @@ const app = {
     }
   },
 
-
   initMenu: function(){
     const thisApp = this; 
     console.log('thisApp.data:', thisApp.data);
@@ -106,7 +105,7 @@ const app = {
   },
 
   initBooking: function (){
-    const thisAp = this;
+    const thisApp = this;
     const bookingElem = document.querySelector(select.containerOf.bookig);
     thisApp.booking = new Booking (bookingElem);
 
