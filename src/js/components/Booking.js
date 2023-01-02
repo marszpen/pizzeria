@@ -15,6 +15,7 @@ class Booking {
         thisBooking.render(element);
         thisBooking.initWidgets();
         thisBooking.getData();
+        thisBooking.initTables();
     }
 
     getData(){
@@ -183,8 +184,15 @@ class Booking {
           select.widgets.hourPicker.wrapper
           );
 
-        thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
-    }
+        thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(
+          select.booking.tables);
+
+        thisBooking.dom.floor = element.querySelector(
+          select.booking.floor);
+
+    
+
+      }
 
     initWidget(){
       const thisBooking = this;
@@ -194,12 +202,55 @@ class Booking {
       thisBooking.datePicker = new DatePicker(thisBooking.dom.datePickerInput);
       thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPickerInput);
       
-      thisBooking.dom.wrapper.addEventListener('updated', function() {
+      thisBooking.dom.wrapper.addEventListener('updated', function(event) {
       thisBooking.updateDOM();
+      if (
+        event.target == thisBooking.dom.hourPicker ||
+        event.target == thisBooking.dom.datePicker ||
+        event.target == thisBooking.dom.peopleAmount ||
+        event.target == thisBooking.dom.hoursAmount
+      ){
+        thisBooking.selectedTable = {};
+        for (let table of thisBooking.dom.tables){
+          table.classList.remove('selected');
+          }
+        }
+      });
+
+      thisBooking.dom.floor.addEventListener('click', function (event) {
+        thisBooking.initTables(event);
       });
     
     }
+    
+    initTables(){
+      const thisBooking = this;
       
+      thisBooking.dom.floor.addEventListener('click', function(event){
+        event.preventDefault();
+  
+        if(event.target.classList.contains('table')){
+          
+          if(!event.target.classList.contains(classNames.booking.tableBooked)){
+  
+            for(let table of thisBooking.dom.tables){
+              if (table.classList.contains(classNames.booking.tableSelected) &&
+              table !== event.target){
+                table.classList.remove(classNames.booking.tableSelected);
+              }
+              if(event.target.classList.contains(classNames.booking.tableSelected)){
+                event.target.classList.remove(classNames.booking.tableSelected);
+              } else {
+                event.target.classList.add(classNames.booking.tableSelected);
+              } 
+            }
+          } else {
+            alert('this table is already booked');
+          } 
+        }
+      });
+    }
+
     }
 
 export default Booking; 

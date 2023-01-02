@@ -1,6 +1,6 @@
 import {select, classNames, templates} from '../settings.js';
-import utils from '../usils.js';
-import AmountWidget from './components/AmountWidget.js';
+import utils from '../utils.js';
+import AmountWidget from './AmountWidget.js';
 
 class Product { //jak dodać debugger?
     constructor (id, data) {//2. nazwanie argumentów. które otrzymuje konstruktor
