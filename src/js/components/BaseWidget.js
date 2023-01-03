@@ -1,5 +1,5 @@
 class BaseWidget{
-    constructor(wrapperElement, initialValue){
+    constructor(wrapperElement, initValue){
     const thisWidget = this;
 
     thisWidget.dom = {};
@@ -15,7 +15,7 @@ class BaseWidget{
     }
     set value(value) {
         const thisWidget = this;
-        const newValue = thisWidget.parseInt(value);
+        const newValue = parseInt(value);
   
         /* TODO: Add validation */
         if (thisWidget.correctValue !== newValue && !isNaN(newValue) && thisWidget.isValid(newValue)) {

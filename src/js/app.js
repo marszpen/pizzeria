@@ -1,4 +1,4 @@
-import {settings, select, classNames} from './settings.js';
+import {settings, select, classNames, templates} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
@@ -16,6 +16,7 @@ const app = {
     
     let pageMatchingHash = thisApp.pages[0].id;
 
+
     for(let page of thisApp.pages){
       if(page.id == idFromHash){
         pageMatchingHash = page.id;
@@ -23,15 +24,15 @@ const app = {
       }
     }
 
-    thisApp.activatePage(idFromHash);
+    thisApp.activatePage(pageMatchingHash);
 
     for (let link of thisApp.navLinks){
       link.addEventListener('click', function(event){
         const clickedElement = this;
-        event.preventDefault;
+        event.preventDefault();
 
         /*get page id from href attribute */
-        const id = clickedElement.getAtribute('href').replace('#', '');
+        const id = clickedElement.getAttribute('href').replace('#', '');
         /*run thisApp.activatePage wih that id */
         thisApp.activatePage(id);
 
@@ -64,7 +65,7 @@ const app = {
 
   initBooking: function (){
     const thisApp = this;
-    const bookingElem = document.querySelector(select.containerOf.bookig);
+    const bookingElem = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking (bookingElem);
 
   },

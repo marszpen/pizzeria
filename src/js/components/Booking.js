@@ -3,9 +3,6 @@ import utils from '../utils.js';
 import AmountWidget from '../components/AmountWidget.js';
 import DatePicker from '../components/DatePicker.js';
 import HourPicker from '../components/HourPicker.js';
-import { forEachTrailingCommentRange } from 'typescript';
-import { className } from 'postcss-selector-parser';
-
 
 class Booking {
     constructor(element){
@@ -22,7 +19,7 @@ class Booking {
       const thisBooking = this;
 
       const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate)
-      const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.msaDate)
+      const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate)
 
       const params = {
         booking: [
@@ -87,8 +84,8 @@ class Booking {
         thisBooking.makeBooked(item.date, item.hour, item.table)
       } 
 
-      const minDate = thisBooking.dataPicker.minDate;
-      const maxDate = thisBooking.dataPicker.maxDate;
+      const minDate = thisBooking.datePicker.minDate;
+      const maxDate = thisBooking.datePicker.maxDate;
 
       for(let item of eventsRepeat){
         if(item.reeat == 'daily'){
@@ -125,8 +122,9 @@ class Booking {
     updateDOM(){
       const thisBooking = this;
 
-      thisBooking.date = thisBookin.datePicker.value;
-      thisBooking.hour = utils.hourToNumber(thisBookin.hourPicker.value);
+      thisBooking.date = thisBooking.datePicker.value;
+      console.log(thisBooking.hourPicker.value);
+      thisBooking.hour = thisBooking.hourPicker.value;
     
       let allAvailable = false;
 
@@ -140,8 +138,8 @@ class Booking {
 
         for(let table of thisBooking.dom.tables){
           let tableId = table.getAttribute(settings.booking.tableIdAttribute);
-          if(!isNaN(tabledId)){
-            tabledId = parseInt(tableId);
+          if(!isNaN(tableId)){
+            tableId = parseInt(tableId);
           }
 
           if(
@@ -162,10 +160,8 @@ class Booking {
         /* generate HTML based on template */
         const generatedHTML = templates.bookingWidget();
 
-        const bookingContainer = document.querySelector(select.containerOf.booking);
-        
         /* add element to menu */
-        bookingContainer.appendChild(thisBooking.element).innerHTML;
+        element.innerHTML= generatedHTML;
 
         thisBooking.dom = {};
         thisBooking.dom.wrapper = element;
@@ -194,7 +190,7 @@ class Booking {
 
       }
 
-    initWidget(){
+    initWidgets(){
       const thisBooking = this;
       thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
       thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
@@ -217,7 +213,7 @@ class Booking {
         }
       });
 
-      thisBooking.dom.floor.addEventListener('click', function (event) {
+      thisBooking.dom.floor.addEventListener('click', function (event){
         thisBooking.initTables(event);
       });
     
@@ -249,6 +245,51 @@ class Booking {
           } 
         }
       });
+    }
+
+    sendBooking(){
+      const thisBooking = this;
+  
+      const url = settings.db.url + '/' + settings.db.bookings;
+      
+      const payload = {
+        date: thisBooking.date,
+        hour: utils.numberToHour(thisBooking.hour),
+        table: parseInt(thisBooking.tableId),
+        duration: thisBooking.hoursAmount.value,
+        ppl: thisBooking.peopleAmount.value,
+        starters: [],
+        phone: thisBooking.dom.phone.value,
+        adress: thisBooking.dom.address.value,
+      };
+  
+      for(let starter of thisBooking.dom.starters) {
+        if(starter.checked){
+          payload.starters.push(starter.value);
+        }
+      }
+  
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+        
+      fetch(url, options)
+        .then(function (response) {
+          return response.json();
+        }).then(function (parsedResponse) {
+          console.log('parsedResponse', parsedResponse);
+          thisBooking.makeBooked(
+            parsedResponse.date, 
+            parsedResponse.hour, 
+            parsedResponse.duration,
+            parsedResponse.table
+          );
+          thisBooking.updateDOM();
+        });
     }
 
     }

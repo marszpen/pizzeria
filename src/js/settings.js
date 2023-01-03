@@ -9,13 +9,24 @@
       menu: '#product-list',
       cart: '#cart',
       pages: '#pages',
-      bookig: '.booking-wrapper',
+      booking: '.booking-wrapper',
     },
     all: {
       menuProducts: '#product-list > .product',
       menuProductsActive: '#product-list > .product.active',
       formInputs: 'input, select',
     },
+
+    booking: {
+      peopleAmount: '.people-amount',
+      hoursAmount: '.hours-amount',
+      tables: '.floor-plan .table',
+      floor: '.floor-plan',
+  },
+  nav: {
+      links: '.main-nav a',
+      },
+
     menuProduct: {
       clickable: '.product__header',
       form: '.product__order',
@@ -29,7 +40,8 @@
         input: 'input.amount', // CODE CHANGED
         linkDecrease: 'a[href="#less"]',
         linkIncrease: 'a[href="#more"]',
-        datePicker: {
+      },
+      datePicker: {
           wrapper: '.date-picker',
           input: `input[name="date"]`,
       },
@@ -39,15 +51,8 @@
           output: '.output',
       },
   },
-    booking: {
-        peopleAmount: '.people-amount',
-        hoursAmount: '.hours-amount',
-        tables: '.floor-plan .table',
-    },
-    nav: {
-        links: '.main-nav a',
-        },
-      },
+
+  
       // CODE ADDED START
       cart: {
         productList: '.cart__order-summary',
@@ -117,8 +122,8 @@
         url: '//localhost:3131',
         products: 'products',
         orders: 'orders',
-        booking: 'booking',
-        event: 'event',
+        bookings: 'bookings',
+        events: 'events',
         dateStartParamKey: 'date_gte',
         dateEndParamKey: 'date_lte',
         notRepeatParam: 'repeat=false',
