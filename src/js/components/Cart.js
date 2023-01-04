@@ -1,4 +1,4 @@
-import {settings, select} from '../settings.js';
+import {settings, select, templates, classNames } from '../settings.js';
 import utils from '../utils.js';
 import CartProduct from './CartProduct.js';
 
@@ -120,32 +120,7 @@ class Cart {
         products: [],
       }
 
-      for(let prod of thisCart.products) {
-        payload.products.push(prod.getData());
-      }
-
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      };
       
-      fetch(url, options); /* =fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload)
-      }); */
-      fetch(url,options)
-        .then(function(response){
-          return response.json();
-        }).then(function(parsedResponse){
-          console.log('parsedResponse', parsedResponse);
-        });
-     }
   }
 
   export default Cart;

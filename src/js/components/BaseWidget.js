@@ -51,9 +51,9 @@ class BaseWidget{
         const event = new Event ('updated', {
           bubbles: true
         });
-        thisWidget.element.dispatchEvent(event);
+        thisWidget.dom.wrapper.dispatchEvent(event);
     }
   
 }
 
-export default BaseWidget;
+export default BaseWidget; 

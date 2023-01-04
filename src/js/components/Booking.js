@@ -254,8 +254,8 @@ class Booking {
       
       const payload = {
         date: thisBooking.date,
-        hour: utils.numberToHour(thisBooking.hour),
-        table: parseInt(thisBooking.tableId),
+        hour: utils.numberToHour(hour),
+        table: parseInt(tableId),
         duration: thisBooking.hoursAmount.value,
         ppl: thisBooking.peopleAmount.value,
         starters: [],
