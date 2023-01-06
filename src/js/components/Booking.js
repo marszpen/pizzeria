@@ -199,6 +199,9 @@ class Booking {
         thisBooking.dom.submit = element.querySelector(
           select.booking.submit
           );
+        thisBooking.dom.starters = element.querySelectorAll(
+          select.booking.starters
+          );
 
     
 
@@ -232,7 +235,7 @@ class Booking {
         thisBooking.initTables(event);
       });
 
-      thisBooking.dom.submit.addEventListener('click', function (event){
+      thisBooking.dom.submit.addEventListener('click', function (event){  
       event.preventDefault();
       thisBooking.sendBooking();
     })
@@ -287,7 +290,7 @@ class Booking {
         if(starter.checked){
           payload.starters.push(starter.value);
         }
-      }
+      };
   
       const options = {
         method: 'POST',
