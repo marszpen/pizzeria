@@ -232,10 +232,10 @@ class Booking {
         thisBooking.initTables(event);
       });
 
-      thisBooking.dom.submit.addEventListener('click', function (event)
+      thisBooking.dom.submit.addEventListener('click', function (event){
       event.preventDefault();
       thisBooking.sendBooking();
-      )
+    })
     
     }
     
