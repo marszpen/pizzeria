@@ -20,7 +20,7 @@ class CartProduct {
 
     getElements (element){
       const thisCartProduct = this;
-      console.log(thisCartProduct);
+     //console.log(thisCartProduct);
 
       thisCartProduct.dom = {};
 

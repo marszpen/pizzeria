@@ -35,7 +35,8 @@ class Cart {
     initActions() {
       const thisCart = this;
       
-      thisCart.dom.toggleTrigger.addEventListener('click', function(){
+      thisCart.dom.toggleTrigger.addEventListener('click', function(event){
+        event.preventDefault();
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       }); 
 
@@ -77,6 +78,7 @@ class Cart {
       const thisCart = this;
       const deliveryFee = settings.cart.defaultDeliveryFee;
       thisCart.totalNumber = 0; //całościowa liczba sztuk produktu
+      thisCart.deliveryFee = deliveryFee;
       thisCart.subtotalPrice = 0; //zsumowana cena za wszystko - bez kosztu dostawy
 
       for (let product of thisCart.products) {
@@ -98,9 +100,9 @@ class Cart {
       }
     }
 
-    remove(cartProduct) {
+    remove(event) {
       const thisCart = this;
-      cartProduct.dom.wrapper.remove();
+      event.dom.wrapper.remove();
       const productsRemove = thisCart.products.indexOf(event);
       thisCart.products.splice(productsRemove, 1);
       thisCart.update();
@@ -119,8 +121,27 @@ class Cart {
         deliveryFee: thisCart.deliveryFee,
         products: [],
       }
-
+      for(let product of thisCart.products) {
+        payload.products.push(product.getData());
+      }
+  
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+        
+      fetch(url, options)
+        .then(function(response) {
+          return response.json();
+        }).then(function(parsedResponse) {
+          console.log('parsedResponse: ', parsedResponse);
+        });
+        
+    }
       
   }
-}
+
   export default Cart;
