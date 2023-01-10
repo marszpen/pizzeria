@@ -4,12 +4,14 @@
       menuProduct: '#template-menu-product',
       cartProduct: '#template-cart-product', // CODE ADDED
       bookingWidget: '#template-booking-widget',
+      homeWidget: '#template-home-widget',
     },
     containerOf: {
       menu: '#product-list',
       cart: '#cart',
       pages: '#pages',
       booking: '.booking-wrapper',
+      home: '.home-wrapper',
     },
     all: {
       menuProducts: '#product-list > .product',
@@ -31,8 +33,11 @@
   },
 
   home: {
-    homeHeader: '.navigation',
+    homeHeader: '.container',
     dataId: 'id-data',
+    imageWrapper: '.home__images__main',
+    crousel: '.carousel-item',
+    gallery: '.gallery__images',
   },
   
   nav: {
@@ -63,8 +68,6 @@
           output: '.output',
       },
   },
-
-  
       // CODE ADDED START
       cart: {
         productList: '.cart__order-summary',
@@ -106,10 +109,15 @@
     },
     pages: {
         active: 'active',
-    }
+    },
+
+    home: {
+
+    },
   };
 
   export const settings = {
+
     amountWidget: {
       defaultValue: 1,
       defaultMin: 1,
@@ -130,16 +138,16 @@
     booking: {
         tableIdAttribute: 'data-table',
     },
-      db: {
-        url: '//localhost:3131',
-        products: 'products',
-        orders: 'orders',
-        bookings: 'bookings',
-        events: 'events',
-        dateStartParamKey: 'date_gte',
-        dateEndParamKey: 'date_lte',
-        notRepeatParam: 'repeat=false',
-        repeatParam: 'repeat_ne=false',
+    db: {
+      url: '//localhost:3131',
+      products: 'products',
+      orders: 'orders',
+      bookings: 'bookings',
+      events: 'events',
+      dateStartParamKey: 'date_gte',
+      dateEndParamKey: 'date_lte',
+      notRepeatParam: 'repeat=false',
+      repeatParam: 'repeat_ne=false',
       },
       };
 
@@ -149,5 +157,6 @@
     cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   // CODE ADDED END
     bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+    homeWidget: Handlebars.compile(document.querySelector(select.templateOf.homeWidget).innerHTML),
   };
 

@@ -31,7 +31,6 @@ class Cart {
       thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
     }
 
-   
     initActions() {
       const thisCart = this;
       
