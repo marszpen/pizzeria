@@ -114,7 +114,7 @@ const app = {
   },
 
   initHome: function () {
-    thisApp = this;
+    const thisApp = this;
     const homeElem = document.querySelector(select.containerOf.home);
     thisApp.homeElem = new Home(homeElem);
   },

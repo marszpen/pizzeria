@@ -2,7 +2,7 @@ import { templates, select } from '../settings.js';
 import utils from '../utils.js';
 
 class Home {
-    construtor (){
+    constructor (){
         const thisHome = this;
 
         thisHome.getElements();

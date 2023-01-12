@@ -1,0 +1,97 @@
+//Global
+$font-widget: 'Oswald', sans-serif;
+
+//Home-widget
+
+.home-widget img {
+    background-color: rgb(205, 203, 203);
+    width: 100%;
+    height: 185px;
+    float: left;
+    margin: 3px;
+    padding-bottom: 3px;
+    object-fit: cover;
+}
+
+.card-body {
+    color: white;
+}
+.card-body-dynamic {
+    p {
+      margin: auto;
+  
+      &.active {
+        font-size: 0px;
+      }
+    }
+  }
+
+.card-body-dynamic:hover {
+    cursor: pointer;
+  
+    p {
+      font-size: 12px;
+      margin: auto;
+        
+      &.transparent {
+        opacity: 0;
+      }
+    }
+  }
+
+.card-body h3 {
+    position: absolute; 
+    font-size: 26x;
+    font-weight: 400;
+    text-align: center;
+    font-family: $font-widget;
+}
+
+.card-body p {
+    font-family: $font-widget;
+}
+.card-hours{
+    background-color: rgb(253, 127, 118);
+}
+.opening-hours {
+    cursor: pointer;
+    height: auto;
+    max-width: 235px; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    font-weight: 13px;
+    font-family: $font-widget;
+
+    &.h5{
+        font-weight: 9px;
+    }
+}
+
+//Carousel
+
+.carousel-cell:before {
+    display: block;
+    text-align: center;
+    line-height: 200px;
+    font-size: 80px;
+}
+
+//Gallery
+
+.gallery img {
+    width: 100%;
+    height:200px;
+    object-fit: cover;
+}
+.card-image:hover {
+  opacity: 0.5;  
+}
+.icons {
+    color: rgb(179, 56, 56);
+    font-size: 22px;
+}
+.gallery card {
+    cursor: pointer;
+}
+
