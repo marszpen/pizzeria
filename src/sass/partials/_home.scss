@@ -4,30 +4,30 @@ $font-widget: 'Oswald', sans-serif;
 //Home-widget
 
 .home-widget img {
-    background-color: rgb(205, 203, 203);
-    width: 100%;
-    height: 185px;
-    float: left;
-    margin: 3px;
-    padding-bottom: 3px;
-    object-fit: cover;
+  background-color: rgb(205, 203, 203);
+  width: 100%;
+  height: 185px;
+  float: left;
+  margin: 3px;
+  padding-bottom: 3px;
+  object-fit: cover;
 }
 
 .card-body {
-    color: white;
+  color: white;
 }
 .card-body-dynamic {
-    p {
-      margin: auto;
+  p {
+     margin: auto;
   
-      &.active {
-        font-size: 0px;
+    &.active {
+      font-size: 0px;
       }
     }
   }
 
 .card-body-dynamic:hover {
-    cursor: pointer;
+  cursor: pointer;
   
     p {
       font-size: 12px;
@@ -40,63 +40,67 @@ $font-widget: 'Oswald', sans-serif;
   }
 
 .card-body h3 {
-    position: absolute; 
-    font-size: 26x;
-    font-weight: 400;
-    text-align: center;
-    font-family: $font-widget;
+  position: absolute; 
+  font-size: 26x;
+  font-weight: 400;
+  text-align: center;
+  font-family: $font-widget;
+  transform: translate(-50%, -50%);
 }
 
 .card-body p {
-    font-family: $font-widget;
+  font-family: $font-widget;
 }
 .card-hours{
-    background-color: rgb(253, 127, 118);
+  background-color: rgb(253, 127, 118);
 }
 .opening-hours {
-    cursor: pointer;
-    height: auto;
-    max-width: 235px; 
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    font-weight: 13px;
-    font-family: $font-widget;
+  cursor: pointer;
+  height: auto;
+  max-width: 235px; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  font-weight: 13px;
+  font-family: $font-widget;
 
     &.h5{
-        font-weight: 9px;
+      font-weight: 9px;
     }
 }
 
 //Carousel
 
 .carousel-cell:before {
-    display: block;
-    text-align: center;
-    line-height: 200px;
-    font-size: 80px;
+  display: block;
+  text-align: center;
+  line-height: 200px;
+  font-size: 80px;
 }
 
 //Gallery
 
 .gallery img {
-    width: 100%;
-    height:200px;
-    object-fit: cover;
+  width: 100%;
+  height:200px;
+  object-fit: cover;
 }
 .card-image:hover {
-  opacity: 0.5;  
-}
-.icons {
-    cursor: pointer;
-    color: rgb(179, 56, 56);
-    font-size: 22px;
+  opacity: 0.5;
+
 }
 .gallery .card-image:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
-
 .icons {
-    transform: scale(1.2);
-    transition: 0.3s;
+  cursor: pointer;
+  display: none;
+  font-size: 22px;
+
+}
+.card-image .icons:hover {
+  color: rgb(179, 56, 56);
+  transform: scale(1.2);
+  transition: 0.3s;
+
 }
