@@ -16,6 +16,7 @@ $font-widget: 'Barlow Condensed', sans-serif;
 
 .card-body {
   color: white;
+  transform: translate(-50%, -50%);
 }
 .card-body-dynamic {
   p {
@@ -29,6 +30,7 @@ $font-widget: 'Barlow Condensed', sans-serif;
 
 .card-body-dynamic:hover {
   cursor: pointer;
+
   
     p {
       font-size: 12px;
