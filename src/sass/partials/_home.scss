@@ -43,12 +43,10 @@ $font-widget: 'Barlow Condensed', sans-serif;
   }
 
 .card-body h3 {
-  position: absolute; 
   font-size: 22px;
   font-weight: 500;
   text-align: center;
   font-family: $font-widget;
-  transform: translate(-50%, -50%);
 }
 
 .card-body h4{
@@ -95,7 +93,6 @@ $font-widget: 'Barlow Condensed', sans-serif;
 }
 .card-image:hover {
   opacity: 0.5;
-
 }
 .gallery .card-image:hover {
   cursor: pointer;
@@ -103,16 +100,19 @@ $font-widget: 'Barlow Condensed', sans-serif;
 .icons {
   cursor: pointer;
   font-size: 22px;
-  display: none;
+  opacity: 0;
 }
 
-.icons:hover {
+.gallery .card:hover .icons {
   color: rgb(179, 56, 56);
   transform: scale(1.2);
   transition: all 0.3s;
-  display: block;
+  opacity: 1;
 }
 
+.gallery .icons .fas:hover {
+  transform: scale(1.2);
+}
 
 //Media
 
